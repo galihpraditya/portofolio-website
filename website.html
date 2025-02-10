@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Saya</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #03abcd; /*03abcd*/
+            --secondary: #02222d; 
+            --dark: #000609; 
+            --light: #f4f4f4; 
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(0deg, var(--secondary), var(--primary));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .profile-image-wrapper {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin-bottom: 1rem;
+        }
+
+        .profile-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 50%;
+            background: conic-gradient(from var(--angle), #03abcd, #50c8fc, #03abcd);
+            z-index: -1;
+            animation: rotateBorder 4s linear infinite;
+        }
+        
+        @property --angle {
+            syntax: '<angle>';
+                initial-value: 0deg;
+            inherits: false;
+        }
+        
+        @keyframes rotateBorder {
+            to {
+                --angle: 360deg;
+            }
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+
+        .gradient-section {
+            height: 100px;
+            background: linear-gradient(to bottom, var(--secondary), var(--dark));
+        }
+
+        .portfolio {
+            padding: 4rem 2rem;
+            background: var(--dark);
+        }
+
+        .portfolio-item {
+            background: #112b46;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .portfolio-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .portfolio-item h3:hover {
+            color: #063f57;
+        }
+
+        .portfolio-item p {
+            font-size: 1rem;
+            color: var(--light);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--secondary);
+            color: var(--light);
+        }
+
+        .footer a {
+            color: var(--light);
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .profile-image-wrapper {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        .animated-text {
+            font-size: 3rem;
+            background: linear-gradient(45deg, #fff 30%, #50c8fc 50%, #fff 70%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas class="particles-canvas"></canvas>
+    <!-- Bagian Hero (Perkenalan) -->
+    <section class="hero">
+        <div class="profile-image-wrapper">
+            <img src="photos/photo_profile.jpg" alt="Foto Profil">
+        </div>
+        <h1 class="animated-text">Galih Praditya Kurniawan</h1>
+        <p>I am an Informatics Engineering student at Universitas Brawijaya with a deep passion for Artificial Intelligence, Machine Learning, and Data Science</p>
+    </section>
+
+    <!-- Gradasi antara Hero dan Portofolio -->
+    <div class="gradient-section"></div>
+
+    <!-- Bagian Portofolio -->
+    <section class="portfolio">
+        <!-- Tambahkan item portofolio di bawah ini -->
+        <div class="portfolio-item">
+            <!-- Ganti src dengan path gambar proyek Anda -->
+            <img src="photos/salary_prediction_photo.png" alt="Salary Prediction Using Machine Learning Models">
+            <h3 onclick="window.open('https://github.com/galihpraditya/salary-prediction', '_blank')">Salary Prediction Using Machine Learning Models</h3>
+            <p>This project aimed to analyze how different regression models perform in salary prediction. Using Python’s robust libraries, I evaluated these models to identify the most accurate one. Random Forest emerged as the best-performing model, offering excellent prediction accuracy with the lowest MSE gap and the highest R² score.</p>
+        </div>
+
+        <div class="portfolio-item">
+            <img src="photos/customer-churn-prediction.png" alt="Customer Churn Prediction">
+            <h3 onclick="window.open('https://github.com/galihpraditya/customer-churn-prediction', '_blank')">Customer Churn Prediction</h3>
+            <p>This project focuses on predicting customer churn in the telecom industry using machine learning. Customer churn, or the rate at which customers stop using a service, is a critical metric for businesses. By predicting churn, companies can take proactive measures to retain customers and improve customer satisfaction.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Galih Praditya Kurniawan. All rights reserved.</p>
+        <div>
+            <a href="https://linkedin.com/in/galihpraditya" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/galihpraditya" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://instagram.com/galihpradtya" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Animasi Scroll untuk Portofolio
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        portfolioItems.forEach(item => {
+            observer.observe(item);
+        });
+
+        class Particle {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.velocity = {
+                    x: (Math.random() - 0.5) * 2,
+                    y: (Math.random() - 0.5) * 2
+                };
+                this.radius = Math.random() * 2;
+            }
+
+            draw() {
+                this.ctx.beginPath();
+                this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                this.ctx.fillStyle = 'rgba(255,255,255,0.5)';
+                this.ctx.fill();
+            }
+
+            update() {
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+
+                if (this.x < 0 || this.x > this.canvas.width) this.velocity.x *= -1;
+                if (this.y < 0 || this.y > this.canvas.height) this.velocity.y *= -1;
+
+                this.draw();
+            }
+        }
+
+        // Initialize Canvas
+        const canvas = document.querySelector('.particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            particles = Array.from({ length: 100 }, () => new Particle(canvas));
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => particle.update());
+            requestAnimationFrame(animate);
+        }
+
+        initCanvas();
+        animate();
+    </script>
+</body>
+</html>
